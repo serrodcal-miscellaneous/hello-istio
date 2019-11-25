@@ -21,6 +21,12 @@ $ docker pull serrodcal/istio-formatter:0.1.0
 $ docker pull serrodcal/istio-hello:0.1.0
 ```
 
+Download Istio:
+
+```sh
+$ curl -L https://istio.io/downloadIstio | sh -
+```
+
 Set `istioctl` in your path:
 
 ```sh
