@@ -1,0 +1,12 @@
+bases:
+- ../../base
+patches:
+- memorylimit_patch.yaml
+- cpulimit_patch.yaml
+- liveness_patch.yaml
+- readiness_patch.yaml
+- applicationconfig_patch.yaml
+configMapGenerator:
+- name: formatter-cm
+  files:
+  - application.conf

@@ -1,0 +1,14 @@
+.git
+.gitignore
+.dockerignore
+README.md
+Dockerfile
+pom.xml
+publisher.iml
+src
+target/classes
+target/classes.timestamp
+target/maven-archiver
+target/maven-status
+target/publisher-0.1.0.jar
+target/test-classes

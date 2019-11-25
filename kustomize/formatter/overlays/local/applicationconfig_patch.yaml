@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: formatter
+spec:
+  template:
+    spec:
+      containers:
+      - name: formatter
+        command: ["java"]
+        args: ["-jar", "formatter.jar", "-Dconfig.file=/opt/formatter/application.conf"]
+        env:
+          - name: INTERFACE
+            value: "0.0.0.0"
+          - name: PORT
+            value: "8080"
+          - name: LOGLEVEL
+            value: "ERROR"
+          - name: STDOUT_LOGLEVEL
+            value: "ERROR"
+        volumeMounts:
+        - name: config
+          mountPath: /opt/formatter/application.conf
+      volumes:
+      - name: config
+        configMap:
+            name: formatter-cm

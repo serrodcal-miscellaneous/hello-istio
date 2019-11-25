@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello
+spec:
+  template:
+    spec:
+      containers:
+      - name: hello
+        command: ["java"]
+        args: ["-jar", "hello.jar", "-Dconfig.file=/opt/hello/application.conf"]
+        env:
+          - name: INTERFACE
+            value: "0.0.0.0"
+          - name: PORT
+            value: "8080"
+          - name: LOGLEVEL
+            value: "ERROR"
+          - name: STDOUT_LOGLEVEL
+            value: "ERROR"
+          - name: FORMATTER_INTERFACE
+            value: "formatter"
+          - name: FORMATTER_PORT
+            value: "8080"
+          - name: PUBLISHER_INTERFACE
+            value: "publisher"
+          - name: PUBLISHER_PORT
+            value: "8080"
+        volumeMounts:
+        - name: config
+          mountPath: /opt/hello/application.conf
+      volumes:
+      - name: config
+        configMap:
+            name: hello-cm

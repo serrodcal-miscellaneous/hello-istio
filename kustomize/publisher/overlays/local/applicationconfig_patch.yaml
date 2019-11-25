@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: publisher
+spec:
+  template:
+    spec:
+      containers:
+      - name: publisher
+        command: ["java"]
+        args: ["-jar", "publisher.jar", "-Dconfig.file=/opt/publisher/application.conf"]
+        env:
+          - name: INTERFACE
+            value: "0.0.0.0"
+          - name: PORT
+            value: "8080"
+          - name: LOGLEVEL
+            value: "ERROR"
+          - name: STDOUT_LOGLEVEL
+            value: "ERROR"
+        volumeMounts:
+        - name: config
+          mountPath: /opt/publisher/application.conf
+      volumes:
+      - name: config
+        configMap:
+            name: publisher-cm

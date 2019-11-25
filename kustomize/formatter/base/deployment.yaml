@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: formatter
+  labels:
+    app: formatter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: formatter
+  template:
+    metadata:
+      labels:
+        app: formatter
+    spec:
+      containers:
+      - name: formatter
+        image: serrodcal/istio-formatter:0.1.0
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 8080
