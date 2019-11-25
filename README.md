@@ -67,3 +67,9 @@ Finally, send requests:
 ```sh
 $ curl 'http://localhost:30000/hello?helloTo=demo&greeting=hi'
 ```
+
+Or, keep sending request:
+
+```sh
+$ i=0 ; while true ; do curl -o /dev/null -s http://localhost:30000/hello?helloTo=demo&greeting=hi ; if [ $? -ne 0 ] ; then echo $i ; break ; fi ; i=$(($i+1)) ; echo -en "$i        \r" ; sleep 1 ; done
+```
