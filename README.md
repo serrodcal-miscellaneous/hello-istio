@@ -73,3 +73,19 @@ Or, keep sending request:
 ```sh
 $ i=0 ; while true ; do curl -o /dev/null -s http://localhost:30000/hello?helloTo=demo&greeting=hi ; if [ $? -ne 0 ] ; then echo $i ; break ; fi ; i=$(($i+1)) ; echo -en "$i        \r" ; sleep 1 ; done
 ```
+
+### Clean up
+
+Clean hello architecture:
+
+```sh
+$ kustomize build kustomize/publisher/overlays/local | istioctl kube-inject -f - | kubectl delete -f -
+$ kustomize build kustomize/formatter/overlays/local | istioctl kube-inject -f - | kubectl delete -f -
+$ kustomize build kustomize/hello/overlays/local | istioctl kube-inject -f - | kubectl delete -f -
+```
+
+Clean Istio:
+
+```sh
+$ istioctl manifest generate --set profile=demo | kubectl delete -f -
+```
