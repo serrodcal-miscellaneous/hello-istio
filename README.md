@@ -1,4 +1,4 @@
-# hello-isito
+# hello-istio
 
 Small example of usage for Istio and Kubernetes.
 
